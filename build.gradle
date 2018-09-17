@@ -21,7 +21,7 @@ version = buildNumber()
 
 
 //version "0.1"
-group "org.gr8crm.tag"
+group "issue"
 
 apply plugin:"io.spring.dependency-management"
 apply plugin:"com.github.johnrengelman.shadow"
@@ -69,7 +69,7 @@ shadowJar {
 
 run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
 
-mainClassName = "org.gr8crm.tag.Application"
+mainClassName = "issue.Application"
 compileJava.options.compilerArgs += '-parameters'
 compileTestJava.options.compilerArgs += '-parameters'
 
