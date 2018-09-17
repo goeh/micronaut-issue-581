@@ -49,18 +49,12 @@ dependencies {
     compile "io.micronaut:runtime"
     compile "io.micronaut:http-client"
     compile "io.micronaut:http-server-netty"
-    compile "io.micronaut:security-jwt"
-    compile "io.micronaut.configuration:kafka"
-    compile "io.micronaut.configuration:mongo-reactive"
-    compile "org.bouncycastle:bcpkix-jdk15on:1.60"
     compile "io.micronaut.configuration:hibernate-validator"
     compileOnly "io.micronaut:inject-java"
-    runtime "io.micronaut:discovery-client"
 
     runtime "ch.qos.logback:logback-classic:1.2.3"
     testCompile "junit:junit:4.12"
     testCompile "io.micronaut:inject-java"
-    testRuntime "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.1"
 }
 
 shadowJar {
@@ -75,7 +69,6 @@ compileTestJava.options.compilerArgs += '-parameters'
 
 task docker(dependsOn: build) {
     def dockerStageDir = new File(project.buildDir, "docker")
-    //def repoName = 'technipelago/' + project.name
     def tagName = buildNumber()
     def jarName = "${project.name}-${version}-all.jar"
     doLast {
@@ -101,9 +94,5 @@ EXPOSE 8091
             commandLine 'docker', 'build', '-t', "${project.name}:${tagName}", '.'
             //commandLine 'docker', 'build', '--pull', '-t', "${repoName}:${tagName}", '.'
         }
-        /*exec {
-            workingDir = dockerStageDir
-            commandLine 'docker', 'push', "${repoName}:${tagName}"
-        }*/
     }
 }
